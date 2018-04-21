@@ -79,10 +79,10 @@ istream & Matrix::read( std::istream & stream )
 
 ostream & Matrix::write(ostream & stream ) const
 {
-    stream << rows << ", " << collumns;
+    stream << rows << ", " << columns;
     for( int i = 0; i < rows; ++i ) {
         stream << '\n';
-        for( int j = 0; j < collumns; ++j ) {
+        for( int j = 0; j < columns; ++j ) {
             stream << arr[ i ][ j ];
             if( j != rows - 1 ) {
                 stream << ' ';
