@@ -25,8 +25,8 @@ if(BUILD_TESTS)
   enable_testing()
 
   file(GLOB ${PROJECT_NAME}_TEST_SOURCES test/*.cpp)
-  add_executable(test ${${PROJECT_NAME}_TEST_SOURCES})
-  target_link_libraries(test ${PROJECT_NAME} Catch::Catch )
+  add_executable(tests ${${PROJECT_NAME}_TEST_SOURCES})
+  target_link_libraries(tests ${PROJECT_NAME} Catch::Catch )
 
   add_test(NAME test_name COMMAND test "-s" "-r" "compact" "--use-colour" "yes") 
 endif()
