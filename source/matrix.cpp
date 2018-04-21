@@ -17,28 +17,28 @@ Matrix::~Matrix() {
         delete[] arr;
 }
 
-int Matrix::Rows() {
-//     ifstream file(filename);
-
-//     if (!file.is_open()){
-//         cout << "ERROR";
-//     }else{
-//         file >> rows;
-//     }
-//     file.close();
-    return rows;
+int Matrix::Rows(string filename) {
+    ifstream file(filename);
+    int row;
+    if (!file.is_open()){
+        cout << "ERROR";
+    }else{
+        file >> row;
+    }
+    file.close();
+    return row;
 }
 
-int Matrix::Columns() {
-//      ifstream file(filename);
-
-//     if (!file.is_open()){
-//         cout << "ERROR";
-//     }else{
-//         file >> rows>>columns;
-//     }
-//     file.close();
-return columns;
+int Matrix::Columns(string filename) {
+     ifstream file(filename);
+    int row, column; 
+    if (!file.is_open()){
+        cout << "ERROR";
+    }else{
+        file >> row>>column;
+    }
+    file.close();
+return column;
 }
 
 void Matrix::Read(string filename) {
