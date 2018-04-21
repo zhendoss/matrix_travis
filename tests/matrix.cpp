@@ -6,13 +6,6 @@ TEST_CASE("creat"){
     REQUIRE(matrix.row() == 0);
     REQUIRE(matrix.column() == 0);
     
-    Matrix matrix_1;
-    REQUIRE(matrix_1.row() == 0);
-    REQUIRE(matrix_1.column() == 0);
-    
-    Matrix matrix_2;
-    REQUIRE(matrix_2.row() == 0);
-    REQUIRE(matrix_2.column() == 0);
 }
 
 TEST_CASE("read"){
@@ -25,16 +18,9 @@ TEST_CASE("read"){
     string input_1{
         "1, 1\n"
         "1" };
-    
-    string input_2{
-        "2, 1\n"
-        "1\n"
-        "2\n"
-         };
-    
+       
     Matrix matrix;
     Matrix matrix_1;
-    Matrix matrix_2;
     istringstream istream{ input };
     
     REQUIRE( matrix.read( istream ) );
@@ -54,16 +40,5 @@ TEST_CASE("read"){
     ostringstream ostream_1;
     matrix_1.write( ostream_1 );
     
-    REQUIRE( input_1 == ostream_1.str() );
-    
-    istringstream istream_2{ input_2 };
-    REQUIRE( matrix_2.read( istream_2 ) );
-    REQUIRE( matrix_2.row() == 2 );
-    REQUIRE( matrix_2.column() == 1);
-    
-    ostringstream ostream_2;
-    matrix_2.write( ostream_2 );
-    
-    REQUIRE( input_2 == ostream_2.str() );
-    
+    REQUIRE( input_1 == ostream_1.str() );    
 }
