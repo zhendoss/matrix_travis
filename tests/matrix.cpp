@@ -3,8 +3,8 @@
 
 TEST_CASE("creat"){
     Matrix matrix;
-    REQUIRE(matrix.rows() == 0);
-    REQUIRE(matrix.rolumns() == 0);
+    REQUIRE(matrix.row() == 0);
+    REQUIRE(matrix.rolumn() == 0);
 }
 
 TEST_CASE("read"){
@@ -17,8 +17,8 @@ TEST_CASE("read"){
     istringstream istream{ input };
     
     REQUIRE( matrix.read( istream ) );
-    REQUIRE( matrix.rows() == 3 );
-    REQUIRE( matrix.collumns() == 3 );
+    REQUIRE( matrix.row() == 3 );
+    REQUIRE( matrix.column() == 3 );
     
     ostringstream ostream;
     matrix.write( ostream );
