@@ -58,8 +58,8 @@ TEST_CASE("read"){
     
     istringstream istream_2{ input_2 };
     REQUIRE( matrix_2.read( istream_2 ) );
-    REQUIRE( matrix_2.row() == 3 );
-    REQUIRE( matrix_2.column() == 4);
+    REQUIRE( matrix_2.row() == 2 );
+    REQUIRE( matrix_2.column() == 1);
     
     ostringstream ostream_2;
     matrix_2.write( ostream_2 );
