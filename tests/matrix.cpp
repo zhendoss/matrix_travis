@@ -2,7 +2,7 @@
 #include "catch.hpp"
 
 TEST_CASE("test matrix","[matrix]"){
-    string A = "/file/A.txt";
+    string A = "A.txt";
     Matrix matrix;
     matrix.Read(A);
     REQUIRE(matrix.Rows(A) == 3);
