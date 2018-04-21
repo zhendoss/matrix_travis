@@ -4,7 +4,7 @@
 TEST_CASE("creat"){
     Matrix matrix;
     REQUIRE(matrix.row() == 0);
-    REQUIRE(matrix.rolumn() == 0);
+    REQUIRE(matrix.column() == 0);
 }
 
 TEST_CASE("read"){
@@ -13,7 +13,7 @@ TEST_CASE("read"){
         "1 1 1\n"
         "2 2 2\n"
         "3 3 3" };
-    matrix_t matrix;
+    Matrix matrix;
     istringstream istream{ input };
     
     REQUIRE( matrix.read( istream ) );
