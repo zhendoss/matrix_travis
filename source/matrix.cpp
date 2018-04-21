@@ -1,21 +1,21 @@
 #include <iostream>
-#include "matrix.h"
+#include "matrix.hpp"
 
 using namespace std;
 
-// Matrix::Matrix(int row, int cols):  rows(row), columns(cols) {
-//     arr = new int *[row];
-//     for (int i = 0; i < row; i++) {
-//         arr[i] = new int[cols]{};
-//     }
-// }
+Matrix::Matrix(int row, int cols):  rows(row), columns(cols) {
+    arr = new int *[row];
+    for (int i = 0; i < row; i++) {
+        arr[i] = new int[cols]{};
+    }
+}
 
-// Matrix::~Matrix() {
-//     for(int i = 0; i < rows; i++){
-//             delete[] arr[i];
-//         }
-//         delete[] arr;
-// }
+Matrix::~Matrix() {
+    for(int i = 0; i < rows; i++){
+            delete[] arr[i];
+        }
+        delete[] arr;
+}
 
 int Matrix::Rows() {
 //     ifstream file(filename);
