@@ -16,9 +16,9 @@ public:
 
     ~Matrix();
 
-    int Rows();
+    int Rows(string filename);
 
-    int Columns();
+    int Columns(string filename);
 
 
 
