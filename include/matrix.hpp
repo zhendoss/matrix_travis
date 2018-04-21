@@ -8,21 +8,18 @@ using namespace std;
 class Matrix{
 private:
     int **arr;
-    unsigned int rows;
-    unsigned int columns;
+    int rows;
+    int columns;
 public:
     Matrix(){}
-    Matrix(int row, int cols);
-
+    Matrix( matrix_t const & other );
     ~Matrix();
+    
+    Matrix & operator =( matrix_t const & other );
 
-    int Rows(string filename);
+    int row() const;
+    int column() const;
 
-    int Columns(string filename);
-
-
-
-    void Read(string filename);
-
-    void Print();
+    istream & read( std::istream & stream );
+    ostream & write( std::ostream & stream ) const;
 };
