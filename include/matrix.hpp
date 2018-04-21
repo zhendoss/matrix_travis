@@ -12,10 +12,10 @@ private:
     int columns;
 public:
     Matrix(){}
-    Matrix( matrix_t const & other );
+    Matrix( Matrix const & other );
     ~Matrix();
     
-    Matrix & operator =( matrix_t const & other );
+    Matrix & operator =( Matrix const & other );
 
     int row() const;
     int column() const;
