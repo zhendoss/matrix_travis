@@ -27,10 +27,10 @@ TEST_CASE("read"){
         "1" };
     
     string input_2{
-        "3, 4\n"
-        "1 2 3 4\n"
-        "2 3 4 5\n"
-        "3 4 5 6" };
+        "2, 1\n"
+        "1\n"
+        "2\n"
+         };
     
     Matrix matrix;
     Matrix matrix_1;
