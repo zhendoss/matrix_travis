@@ -14,13 +14,13 @@ TEST_CASE("read"){
         "2 2 2\n"
         "3 3 3" };
     matrix_t matrix;
-    std::istringstream istream{ input };
+    istringstream istream{ input };
     
     REQUIRE( matrix.read( istream ) );
     REQUIRE( matrix.rows() == 3 );
     REQUIRE( matrix.collumns() == 3 );
     
-    std::ostringstream ostream;
+    ostringstream ostream;
     matrix.write( ostream );
     
     REQUIRE( input == ostream.str() );
