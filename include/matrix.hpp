@@ -11,7 +11,7 @@ private:
     int rows;
     int columns;
 public:
-    Matrix(){}
+    Matrix();
     Matrix( Matrix const & other );
     ~Matrix();
     
