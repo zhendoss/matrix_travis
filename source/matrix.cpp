@@ -13,20 +13,51 @@ int Matrix::column() const{return columns;}
 
 istream & Matrix::read(istream & stream )
 {
+    int r;
+    int c;
     char symbol;
     
-
-    if( stream >> rows && stream >> symbol && symbol == ',' && stream >> columns ) {
-        int ** a = new int *[ rows ];
-        for( int i = 0;  i < rows; ++i ) {
-            a[ i ] = new int[ columns ];
-            for( int j = 0; j < columns; ++j ) {
-                stream >> a[ i ][ j ];
-	    }
-	}
+    bool success = true;
+    if( stream >> r && stream >> symbol && symbol == ',' && stream >> c ) {
+        int ** a = new int *[ r ];
+        for( int i = 0; success && i < r; ++i ) {
+            a[ i ] = new int[ c ];
+            for( int j = 0; j < c; ++j ) {
+                if( !( stream >> a[ i ][ j ] ) ) {
+                    success = false;
+                    break;
+                }
+            }
+        }
+        
+        if( success ) {
+            for( int i = 0; i < rows; ++i ) {
+                delete [] arr[ i ];
+            }
+            delete [] arr;
+            
+            rows = r;
+            columns = c;
+            arr = a;
+        }
+        else {
+            for( int i = 0; i < r; ++i ) {
+                delete [] a[ i ];
+            }
+            delete [] a;
+        }
     }
-	return stream;
+    else {
+        success = false;
+    }
+    
+    if( !success ) {
+        stream.setstate(ios_base::failbit );
+    }
+    
+return stream;
 }
+
 
 ostream & Matrix::write(ostream & stream ) const
 {
@@ -41,5 +72,5 @@ ostream & Matrix::write(ostream & stream ) const
         }
     }
     
-	return stream;
+return stream;
 }
