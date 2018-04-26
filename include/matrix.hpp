@@ -3,7 +3,6 @@
 #include <cassert>
 
 using namespace std;
-//списко инициализаторов
 
 class Matrix{
 private:
@@ -12,14 +11,18 @@ private:
     int columns;
 public:
     Matrix();
-    Matrix( Matrix const & other );
+    Matrix(int row, int cols);
     ~Matrix();
-    
-    Matrix & operator =( Matrix const & other );
-
-    int row() const;
-    int column() const;
-
-    istream & read( std::istream & stream );
-    ostream & write( std::ostream & stream ) const;
+    int Rows();
+    int Columns();
+    int Element(int i, int j);
+    void Read(string filename);
+    void Print();
+    Matrix operator+(Matrix& other)const;
+    Matrix operator-(Matrix& other)const;
+    Matrix operator*(Matrix& other)const;
+    Matrix Transp()const ;
+    Matrix operator=(Matrix& other)const;
+    bool operator==(Matrix& other)const;
+    friend ostream& operator<<(ostream& os,const Matrix& other);
 };
