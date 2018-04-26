@@ -1,76 +1,125 @@
 #include <iostream>
 #include "matrix.hpp"
 
-using namespace std;
-
 Matrix::Matrix():rows(0), columns(0){}
+Matrix::Matrix(int row, int cols): rows(row), columns(cols){
+    arr = new int*[row];
+    for(int i = 0; i < row; i++){
+        arr[i] = new int[cols]{};
+    }
+}
+Matrix::~Matrix(){
+//        for(int i = 0; i < rows; i++){
+//            delete[] arr[i];
+//        }
+//        delete[] arr;
+}
 
-Matrix::~Matrix(){}
+int Matrix::Rows(){
+    return rows;
+}
+int Matrix::Columns(){
+    return columns;
+}
+int Matrix::Element(int i, int j) {
+    if (i < rows && j < columns) {
+        return arr[i][j];
+    }
+}
 
-int Matrix::row() const{return rows;}
+void Matrix::Read(string filename) {
+    ifstream file(filename);
 
-int Matrix::column() const{return columns;}
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            file >> arr[i][j];
+        }
+    }
+}
 
-istream & Matrix::read(istream & stream )
-{
-    int r;
-    int c;
-    char symbol;
-    
-    bool success = true;
-    if( stream >> r && stream >> symbol && symbol == ',' && stream >> c ) {
-        int ** a = new int *[ r ];
-        for( int i = 0; success && i < r; ++i ) {
-            a[ i ] = new int[ c ];
-            for( int j = 0; j < c; ++j ) {
-                if( !( stream >> a[ i ][ j ] ) ) {
-                    success = false;
-                    break;
+void Matrix::Print(){
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < columns; j++){
+            cout.width(rows);
+            cout << arr[i][j] << " ";
+        }
+        cout<<endl;
+    }
+}
+
+Matrix Matrix::operator+(Matrix& other)const{
+    assert(rows == other.rows && columns == other.columns);
+    Matrix result(other.rows, other.columns);
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < columns; j++){
+            result.arr[i][j] = arr[i][j] + other.arr[i][j];
+        }
+    }
+    return result;
+}
+Matrix Matrix::operator-(Matrix& other)const{
+    assert(rows == other.rows && columns == other.columns);
+    Matrix result(other.rows, other.columns);
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < columns; j++){
+            result.arr[i][j] = arr[i][j] - other.arr[i][j];
+        }
+    }
+    return result;
+}
+Matrix Matrix::operator*(Matrix& other)const{
+    assert(columns == other.rows);
+    Matrix result(rows, other.columns);
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < other.columns; j++){
+            int tmp = 0;
+            for(int t = 0; t < columns; t++){
+                tmp += arr[i][t]*other.arr[t][j];
+            }
+            result.arr[i][j] = tmp;
+        }
+    }
+    return result;
+}
+Matrix Matrix::Transp()const{
+    Matrix result(columns, rows);
+    for (int i = 0; i < rows; i++){
+        for( int j = 0; j < columns; j++){
+            result.arr[j][i] = arr[i][j];
+        }
+    }
+    return result;
+}
+Matrix Matrix::operator=(Matrix& other)const{
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < columns; j++){
+            arr[i][j] = other.arr[i][j];
+        }
+    }
+    return *this;
+}
+bool Matrix::operator==(Matrix& other)const{
+    if(rows != other.rows || columns != other.columns){
+        return false;
+    }else{
+        for (int i = 0; i < rows; i++){
+            for (int j = 0; j < columns; j++){
+                if(arr[i][j] != other.arr[i][j]){
+                    return false;
                 }
             }
         }
-        
-        if( success ) {
-            for( int i = 0; i < rows; ++i ) {
-                delete [] arr[ i ];
-            }
-            delete [] arr;
-            
-            rows = r;
-            columns = c;
-            arr = a;
-        }
-        else {
-            for( int i = 0; i < r; ++i ) {
-                delete [] a[ i ];
-            }
-            delete [] a;
-        }
     }
-    else {
-        success = false;
-    }
-    
-    if( !success ) {
-        stream.setstate(ios_base::failbit );
-    }
-    
-return stream;
+    return true;
 }
 
-
-ostream & Matrix::write(ostream & stream ) const
-{
-    stream << rows << ", " << columns;
-    for( int i = 0; i < rows; ++i ) {
-        stream << '\n';
-        for( int j = 0; j < columns; ++j ) {
-            stream << arr[ i ][ j ];
-            if( j != rows - 1 ) {
-                stream << ' ';
-            }
+ostream& operator<<(ostream& os,const Matrix& other){
+    for (int i = 0; i < other.rows; i++){
+        for (int j = 0; j < other.columns; j++){
+            os.width(other.rows);
+            os << other.arr[i][j] << " ";
         }
+        os << "\n";
     }
-    
-return stream;
+    return os;
 }
