@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Matrix::Matrix() : rows(0), columns(0){}
+Matrix::Matrix():rows(0), columns(0){}
 
 Matrix::~Matrix(){}
 
@@ -17,11 +17,11 @@ istream & Matrix::read(istream & stream )
     
 
     if( stream >> rows && stream >> symbol && symbol == ',' && stream >> columns ) {
-        int ** a = new int *[ r ];
-        for( int i = 0; success && i < r; ++i ) {
-            a[ i ] = new int[ c ];
-            for( int j = 0; j < c; ++j ) {
-                stream >> a[ i ][ j ] 
+        int ** a = new int *[ rows ];
+        for( int i = 0;  i < rows; ++i ) {
+            a[ i ] = new int[ columns ];
+            for( int j = 0; j < columns; ++j ) {
+                stream >> a[ i ][ j ];
 	    }
 	}
     }
