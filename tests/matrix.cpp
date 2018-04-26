@@ -1,14 +1,14 @@
 #include "matrix.hpp"
 #include "catch.hpp"
 
-TEST_CASE("creat"){
+SCENARIO("creat"){
     Matrix matrix;
     REQUIRE(matrix.row() == 0);
     REQUIRE(matrix.column() == 0);
     
 }
 
-TEST_CASE("read"){
+SCENARIO("read"){
     string input{
         "3, 3\n"
         "1 1 1\n"
