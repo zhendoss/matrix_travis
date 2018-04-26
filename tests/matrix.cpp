@@ -1,4 +1,5 @@
 #include "catch.hpp"
+#include "matrix.hpp"
 SCENARIO("matrix new w/o params","[new w/o params]"){
     Matrix matrix;
     REQUIRE(matrix.Rows() == 0);
