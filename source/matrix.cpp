@@ -3,77 +3,28 @@
 
 using namespace std;
 
-Matrix::Matrix() : arr{ nullptr }, rows{ 0 }, columns{ 0 }
-{
-}
+Matrix::Matrix() : rows(0), columns(0){}
 
-Matrix::Matrix( Matrix const & other )
-{
-}
+Matrix::~Matrix(){}
 
-Matrix & Matrix::operator =( Matrix const & other )
-{
-	return *this;
-}
+int Matrix::row() const{return rows;}
 
-Matrix::~Matrix()
-{
-}
+int Matrix::column() const{return columns;}
 
-int Matrix::row() const
+istream & Matrix::read(istream & stream )
 {
-    return rows;
-}
-
-int Matrix::column() const
-{
-    return columns;
-}
-
-istream & Matrix::read( std::istream & stream )
-{
-    int r;
-    int c;
     char symbol;
     
-    bool success = true;
-    if( stream >> r && stream >> symbol && symbol == ',' && stream >> c ) {
+
+    if( stream >> rows && stream >> symbol && symbol == ',' && stream >> columns ) {
         int ** a = new int *[ r ];
         for( int i = 0; success && i < r; ++i ) {
             a[ i ] = new int[ c ];
             for( int j = 0; j < c; ++j ) {
-                if( !( stream >> a[ i ][ j ] ) ) {
-                    success = false;
-                    break;
-                }
-            }
-        }
-        
-        if( success ) {
-            for( int i = 0; i < rows; ++i ) {
-                delete [] arr[ i ];
-            }
-            delete [] arr;
-            
-            rows = r;
-            columns = c;
-            arr = a;
-        }
-        else {
-            for( int i = 0; i < r; ++i ) {
-                delete [] a[ i ];
-            }
-            delete [] a;
-        }
+                stream >> a[ i ][ j ] 
+	    }
+	}
     }
-    else {
-        success = false;
-    }
-    
-    if( !success ) {
-        stream.setstate(ios_base::failbit );
-    }
-    
 	return stream;
 }
 
