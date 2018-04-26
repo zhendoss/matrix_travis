@@ -24,6 +24,8 @@ int Matrix::Columns(){
 int Matrix::Element(int i, int j) {
     if (i < rows && j < columns) {
         return arr[i][j];
+    }else{
+        return 1;
     }
 }
 
